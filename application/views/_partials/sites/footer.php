@@ -28,22 +28,22 @@
                                 <?php foreach ($kontak as $knt) : ?>
                                     <?php switch ($knt->jenis_media) {
                                         case 'alamat':
-                                            echo '<li><i class="fa-solid fa-map-location-dot"></i> '.$knt->keterangan.' </li>';
+                                            echo '<li><i class="fa-solid fa-map-location-dot"></i> ' . $knt->keterangan . ' </li>';
                                             break;
                                         case 'telepon':
-                                            echo '<li><i class="fas fa-phone-alt"></i> '.$knt->keterangan.' </li>';
+                                            echo '<li><i class="fas fa-phone-alt"></i> ' . $knt->keterangan . ' </li>';
                                             break;
                                         case 'instagram':
-                                            echo '<li><a href="'.$knt->link.'"><i class="fab fa-instagram"></i> '.$knt->nama_kontak.'</a></li>';
+                                            echo '<li><a href="' . $knt->link . '"><i class="fab fa-instagram"></i> ' . $knt->nama_kontak . '</a></li>';
                                             break;
                                         case 'facebook':
-                                            echo '<li><a href="'.$knt->link.'"><i class="fab fa-facebook-square"></i>'.$knt->nama_kontak.'</a></li>';
+                                            echo '<li><a href="' . $knt->link . '"><i class="fab fa-facebook-square"></i>' . $knt->nama_kontak . '</a></li>';
                                             break;
-                                            case 'youtube':
-                                                echo '<li><a href="'.$knt->link.'"><i class="fab fa-youtube"></i>'.$knt->nama_kontak.'</a></li>';
-                                                break;
+                                        case 'youtube':
+                                            echo '<li><a href="' . $knt->link . '"><i class="fab fa-youtube"></i>' . $knt->nama_kontak . '</a></li>';
+                                            break;
                                         default:
-                                            
+
                                             break;
                                     } ?>
                                 <?php endforeach ?>
@@ -58,7 +58,7 @@
                     <div class="footer-copy-right">
                         <p>Copyright &copy;<script>
                                 document.write(new Date().getFullYear());
-                            </script> All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                            </script> All rights reserved | This template is made with Testing <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
                     </div>
                 </div>
             </div>
