@@ -62,6 +62,9 @@
                                             <span class="badge bg-danger" <?= $list->vkades == 'Tolak' ? '' : 'hidden' ?>>Tolak</span>
                                             <span class="badge bg-success" <?= $list->vkades == 'Terima' ? '' : 'hidden' ?>>Setujui</span>
                                         </li>
+                                        <li>
+                                            Nomor Surat : <b><?= $list->no_surat ?></b>
+                                        </li>
                                         <li>Catatan :<br>
                                             <?= $list->keterangan ?>
                                         </li>
@@ -85,7 +88,7 @@
                                         <button type="button" class="btn btn-success btn-xs" data-bs-toggle="modal" data-bs-target="#validasi-selesai-<?= $list->id_pengajuan ?>" <?= in_array($list->vkades, ['Terima']) ? (in_array($list->status, ['Selesai']) ? 'hidden' : '') : 'hidden' ?>>Validasi Seleai</button>
                                         <button type="button" class="btn btn-danger btn-xs" data-bs-toggle="modal" data-bs-target="#sendkades-<?= $list->id_pengajuan ?>" <?= in_array($list->vkades, ['Prosess']) ? '' : 'hidden' ?>>Kirim Ke Kades</button>
                                     <?php else : ?>
-                                        <button type="button" class="btn btn-success btn-xs" data-bs-toggle="modal" data-bs-target="#validasi-kades-<?= $list->id_pengajuan ?>" <?= in_array($list->status, ['Pending']) ? '' : 'hidden' ?>>Validasi Seleai Dan Digital Sign</button>
+                                        <button type="button" class="btn btn-success btn-xs" data-bs-toggle="modal" data-bs-target="#validasi-kades-<?= $list->id_pengajuan ?>" <?= in_array($list->status, ['Pending']) ? (in_array($list->vkades, ['Terima']) ? 'hidden' : '') : (in_array($list->vkades, ['Terima']) ? 'hidden' : '') ?>>Validasi Seleai Dan Digital Sign</button>
                                     <?php endif ?>
 
 
@@ -337,17 +340,14 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="alert alert-info" role="alert">
-                                <strong class="d-block">Informasi :</strong>
-                                <small class="text-justify">
-                                    Validasi Hanya berlaku untuk status Tolak
-                                </small>
-                            </div>
-                        </div>
-                    </div>
                     <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <div class="row ">
+                                <div class="col-sm-4">Nomor Surat</div>
+                                <div class="col-sm-1">:</div>
+                                <div class="col-sm-7"><?= $list->no_surat ?></div>
+                            </div>
+                        </li>
                         <li class="list-group-item">
                             <div class="row ">
                                 <div class="col-sm-4">NIK Pemohon</div>
@@ -563,6 +563,11 @@
                 show: true
             },
             targets: [2, 3, 5, 6]
+        }, {
+            searchPanes: {
+                show: false
+            },
+            targets: [4]
         }]
     });
 

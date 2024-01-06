@@ -27,13 +27,15 @@
                                 <td><?= $item->tanggal_pengajuan ?></td>
                                 <td>
                                     <span class="badge bg-label-info" <?= $item->status == 'Prosess' ? '' : 'hidden' ?>>Prosess</span>
-                                    <span class="badge bg-label-info" <?= $item->status == 'Pending' ? '' : 'hidden' ?>>Pending</span>
+                                    <span class="badge bg-label-warning" <?= $item->status == 'Pending' ? '' : 'hidden' ?>>Pending</span>
                                     <span class="badge bg-label-danger" <?= $item->status == 'Tolak' ? '' : 'hidden' ?>>Tolak</span>
                                     <span class="badge bg-label-success" <?= $item->status == 'Selesai' ? '' : 'hidden' ?>>Selesai</span>
                                 </td>
                                 <td><?= $item->keterangan ?></td>
                                 <td>
-                                    <a href="<?=base_url('lihat/surat/'.$item->id_pengajuan)?>" target="_blank" class="btn btn-info btn-sm" <?= array_intersect([$item->status], $disabled) ? 'disabled' : '' ?>>Cetak surat</a>
+                                    <?php if (in_array($item->status, ['Selesai'])) : ?>
+                                        <a href="<?= base_url('lihat/surat/' . $item->id_pengajuan) ?>" target="_blank" class="btn btn-info btn-sm">Cetak surat</a>
+                                    <?php endif ?>
                                 </td>
                             </tr>
                         <?php endforeach ?>

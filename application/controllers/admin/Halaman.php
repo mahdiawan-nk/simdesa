@@ -22,22 +22,22 @@ class Halaman extends CI_Controller
 
     public function index()
     {
-        $dataHalaman =$this->halamans->read()->result_array();
+        $dataHalaman = $this->halamans->read()->result_array();
         foreach ($dataHalaman as $key => $value) {
-            $dataMennu=$this->menus->read($value['id_menu'])->row();
-            $dataHalaman[$key]['nama_menu']=$dataMennu->nama_menu;
+            $dataMennu = $this->menus->read($value['id_menu'])->row();
+            $dataHalaman[$key]['nama_menu'] = $dataMennu->nama_menu;
         }
-        
+
         $this->data['news'] = (object)$dataHalaman;
         $this->data['pages'] = $this->path_view->view;
         $this->load->view('admins/index', $this->data);
         // $this->output->set_content_type('application/json')->set_output(json_encode($this->data));
-        
+
     }
 
     function create()
     {
-        $this->data['menu']=$this->menus->read()->result();
+        $this->data['menu'] = $this->menus->read()->result();
         $this->data['pages'] = $this->path_view->create;
         $this->load->view('admins/index', $this->data);
     }
@@ -48,7 +48,7 @@ class Halaman extends CI_Controller
         if ($id) {
             $DataHalaman = $this->halamans->read($id)->row();
             if ($DataHalaman) {
-                $this->data['menu']=$this->menus->read()->result();
+                $this->data['menu'] = $this->menus->read()->result();
                 $this->data['pages'] = $this->path_view->edit;
                 $this->data['halaman'] = $DataHalaman;
                 $this->load->view('admins/index', $this->data);
@@ -68,13 +68,13 @@ class Halaman extends CI_Controller
         unset($PostData['redirect']);
         $this->halamans->create($PostData);
         redirect(base_url('panel-admin/halaman'), 'refresh');
-        
     }
 
     function update($id)
     {
         $PostData = $this->input->post();
         unset($PostData['files']);
+        unset($PostData['redirect']);
         $this->halamans->update($id, $PostData);
         redirect(base_url('panel-admin/halaman'), 'refresh');
     }

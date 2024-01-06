@@ -4,6 +4,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Files extends CI_Controller
 {
     public $pdf;
+    private $nrpKades = 900390340540;
     public function __construct()
     {
         parent::__construct();
@@ -71,7 +72,7 @@ class Files extends CI_Controller
         $this->pdf->Ln(5);
         $this->pdf->Cell(0, 5, strtoupper($data->nama_surat), 0, 3, 'C', 0, '', 0, false, 'T', 'M');
         $this->pdf->SetFont('times', '', 14);
-        $this->pdf->Cell(0, 5, 'Nomor: ' . $data->id_pengajuan . $data->format_penomoran . date('Y', strtotime($data->tanggal_signatur)), 0, 3, 'C', 0, '', 0, false, 'T', 'M');
+        $this->pdf->Cell(0, 5, 'Nomor: ' . $data->no_surat, 0, 3, 'C', 0, '', 0, false, 'T', 'M');
 
         $this->pdf->Ln(10);
         $this->pdf->SetFont('times', '', 12);
@@ -217,23 +218,16 @@ class Files extends CI_Controller
         $this->pdf->Line(131, 213, 215 - 15, 213);
         $this->pdf->SetFont('times', 'BU', 14);
 
-        $this->pdf->Ln(32);
+        $this->pdf->Ln(20);
         $this->pdf->SetFont('times', 'BU', 12);
         $this->pdf->Cell(110, 5, '', 0, 0, 'L', 0, '', 0, false, 'T', 'M');
         $this->pdf->Cell(0, 5, 'MASRI DALMI, S.Sos', 0, 1, 'L', 0, '', 0, false, 'T', 'M');
         $this->pdf->SetFont('times', '', 12);
         $this->pdf->Cell(110, 5, '', 0, 0, 'L', 0, '', 0, false, 'T', 'M');
-        $this->pdf->Cell(0, 5, 'NIPD : 234234343545', 0, 0, 'L', 0, '', 0, false, 'T', 'M');
+        $this->pdf->Cell(0, 5, 'NRP : ' . $this->nrpKades, 0, 0, 'L', 0, '', 0, false, 'T', 'M');
 
-        $style = array(
-            'border' => FALSE,
-            'padding' => 5,
-            'fgcolor' => array(0, 0, 0),
-            'bgcolor' => false,
-            'module_width' => 1,
-            'module_height' => 1
-        );
-        $this->pdf->write2DBarcode($dataSurat->signatur_kode, 'QRCODE,H', 130, 214, 40, 40, $style, 'N');
+        $image_file = FCPATH . './assets/uploads/signatur_kades/signature.png';
+        $this->pdf->Image($image_file, 133, 220, 45, 20, 'PNG', '', 'T', false, 300, '', false, false, 0, false, false, false);
     }
 
     function contenBodyskk($dataSurat, $dataPenduduk, $fieldData)
@@ -307,23 +301,16 @@ class Files extends CI_Controller
         $this->pdf->Line(131, 194.5, 210 - 10, 194.5);
         $this->pdf->SetFont('times', 'BU', 14);
 
-        $this->pdf->Ln(32);
+        $this->pdf->Ln(20);
         $this->pdf->SetFont('times', 'BU', 12);
         $this->pdf->Cell(110, 5, '', 0, 0, 'L', 0, '', 0, false, 'T', 'M');
         $this->pdf->Cell(0, 5, 'MASRI DALMI, S.Sos', 0, 1, 'L', 0, '', 0, false, 'T', 'M');
         $this->pdf->SetFont('times', '', 12);
         $this->pdf->Cell(110, 5, '', 0, 0, 'L', 0, '', 0, false, 'T', 'M');
-        $this->pdf->Cell(0, 5, 'NIPD : 234234343545', 0, 0, 'L', 0, '', 0, false, 'T', 'M');
+        $this->pdf->Cell(0, 5, 'NRP : ' . $this->nrpKades, 0, 0, 'L', 0, '', 0, false, 'T', 'M');
 
-        $style = array(
-            'border' => FALSE,
-            'padding' => 5,
-            'fgcolor' => array(0, 0, 0),
-            'bgcolor' => false,
-            'module_width' => 1,
-            'module_height' => 1
-        );
-        $this->pdf->write2DBarcode($dataSurat->signatur_kode, 'QRCODE,H', 130, 195, 40, 40, $style, 'N');
+        $image_file = FCPATH . './assets/uploads/signatur_kades/signature.png';
+        $this->pdf->Image($image_file, 133, 200, 45, 20, 'PNG', '', 'T', false, 300, '', false, false, 0, false, false, false);
     }
 
     function contentBodyskl($dataSurat, $dataPenduduk, $fieldData)
@@ -440,23 +427,16 @@ class Files extends CI_Controller
         $this->pdf->Line(131, 254.5, 210 - 10, 254.5);
         $this->pdf->SetFont('times', 'BU', 14);
 
-        $this->pdf->Ln(32);
+        $this->pdf->Ln(20);
         $this->pdf->SetFont('times', 'BU', 12);
         $this->pdf->Cell(110, 5, '', 0, 0, 'L', 0, '', 0, false, 'T', 'M');
         $this->pdf->Cell(0, 5, 'MASRI DALMI, S.Sos', 0, 1, 'L', 0, '', 0, false, 'T', 'M');
         $this->pdf->SetFont('times', '', 12);
         $this->pdf->Cell(110, 5, '', 0, 0, 'L', 0, '', 0, false, 'T', 'M');
-        $this->pdf->Cell(0, 5, 'NIPD : 234234343545', 0, 0, 'L', 0, '', 0, false, 'T', 'M');
+        $this->pdf->Cell(0, 5, 'NRP : ' . $this->nrpKades, 0, 0, 'L', 0, '', 0, false, 'T', 'M');
 
-        $style = array(
-            'border' => FALSE,
-            'padding' => 5,
-            'fgcolor' => array(0, 0, 0),
-            'bgcolor' => false,
-            'module_width' => 1,
-            'module_height' => 1
-        );
-        $this->pdf->write2DBarcode($dataSurat->signatur_kode, 'QRCODE,H', 130, 255, 40, 40, $style, 'N');
+        $image_file = FCPATH . './assets/uploads/signatur_kades/signature.png';
+        $this->pdf->Image($image_file, 133, 260, 45, 20, 'PNG', '', 'T', false, 300, '', false, false, 0, false, false, false);
     }
 
     public function contenBodysktm($dataSurat, $dataPenduduk, $fieldData)
@@ -529,23 +509,16 @@ class Files extends CI_Controller
         $this->pdf->Line(131, 206.5, 215 - 20, 206.5);
         $this->pdf->SetFont('times', 'BU', 14);
 
-        $this->pdf->Ln(32);
+        $this->pdf->Ln(20);
         $this->pdf->SetFont('times', 'BU', 12);
         $this->pdf->Cell(110, 5, '', 0, 0, 'L', 0, '', 0, false, 'T', 'M');
         $this->pdf->Cell(0, 5, 'MASRI DALMI, S.Sos', 0, 1, 'L', 0, '', 0, false, 'T', 'M');
         $this->pdf->SetFont('times', '', 12);
         $this->pdf->Cell(110, 5, '', 0, 0, 'L', 0, '', 0, false, 'T', 'M');
-        $this->pdf->Cell(0, 5, 'NIPD : 234234343545', 0, 0, 'L', 0, '', 0, false, 'T', 'M');
+        $this->pdf->Cell(0, 5, 'NRP : ' . $this->nrpKades, 0, 0, 'L', 0, '', 0, false, 'T', 'M');
 
-        $style = array(
-            'border' => FALSE,
-            'padding' => 5,
-            'fgcolor' => array(0, 0, 0),
-            'bgcolor' => false,
-            'module_width' => 1,
-            'module_height' => 1
-        );
-        $this->pdf->write2DBarcode($dataSurat->signatur_kode, 'QRCODE,H', 130, 207, 40, 40, $style, 'N');
+        $image_file = FCPATH . './assets/uploads/signatur_kades/signature.png';
+        $this->pdf->Image($image_file, 133, 213, 45, 20, 'PNG', '', 'T', false, 300, '', false, false, 0, false, false, false);
     }
 
     public function contenBodyskt($dataSurat, $dataPenduduk, $fieldData)
@@ -618,23 +591,16 @@ class Files extends CI_Controller
         $this->pdf->Line(131, 206.5, 215 - 20, 206.5);
         $this->pdf->SetFont('times', 'BU', 14);
 
-        $this->pdf->Ln(32);
+        $this->pdf->Ln(20);
         $this->pdf->SetFont('times', 'BU', 12);
         $this->pdf->Cell(110, 5, '', 0, 0, 'L', 0, '', 0, false, 'T', 'M');
         $this->pdf->Cell(0, 5, 'MASRI DALMI, S.Sos', 0, 1, 'L', 0, '', 0, false, 'T', 'M');
         $this->pdf->SetFont('times', '', 12);
         $this->pdf->Cell(110, 5, '', 0, 0, 'L', 0, '', 0, false, 'T', 'M');
-        $this->pdf->Cell(0, 5, 'NIPD : 234234343545', 0, 0, 'L', 0, '', 0, false, 'T', 'M');
+        $this->pdf->Cell(0, 5, 'NRP : ' . $this->nrpKades, 0, 0, 'L', 0, '', 0, false, 'T', 'M');
 
-        $style = array(
-            'border' => FALSE,
-            'padding' => 5,
-            'fgcolor' => array(0, 0, 0),
-            'bgcolor' => false,
-            'module_width' => 1,
-            'module_height' => 1
-        );
-        $this->pdf->write2DBarcode($dataSurat->signatur_kode, 'QRCODE,H', 130, 207, 40, 40, $style, 'N');
+        $image_file = FCPATH . './assets/uploads/signatur_kades/signature.png';
+        $this->pdf->Image($image_file, 133, 213, 45, 20, 'PNG', '', 'T', false, 300, '', false, false, 0, false, false, false);
     }
     function formated()
     {
