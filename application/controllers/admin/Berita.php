@@ -66,7 +66,7 @@ class Berita extends CI_Controller
             'slug' => $this->input->post('slugs'),
             'status' => $this->input->post('status'),
             'content' => $this->input->post('content'),
-            'kategori_Id'=>$this->input->post('kategori_id')
+            'kategori_Id' => $this->input->post('kategori_id')
         ];
 
 
@@ -78,7 +78,7 @@ class Berita extends CI_Controller
 
         if (!$this->upload->do_upload('file')) {
             $this->upload->display_errors();
-            redirect(base_url('panel-admin/berita/add'), 'location');
+            redirect(base_url('panel-admin/berita/create'), 'location');
         } else {
             $data = $this->upload->data();
 
@@ -95,7 +95,7 @@ class Berita extends CI_Controller
             'slug' => $this->input->post('slugs'),
             'status' => $this->input->post('status'),
             'content' => $this->input->post('content'),
-            'kategori_Id'=>$this->input->post('kategori_id')
+            'kategori_Id' => $this->input->post('kategori_id')
         ];
 
         if ($_FILES['file']['name']) {
