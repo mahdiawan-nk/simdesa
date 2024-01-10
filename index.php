@@ -62,7 +62,7 @@ switch ($_SERVER['HTTP_HOST']) {
 		$env = 'testing';
 		break;
 	case 'tara.tif23.mhs-ta.com':
-		$env = 'development';
+		$env = 'production';
 		break;
 	default:
 		$env = 'development';
