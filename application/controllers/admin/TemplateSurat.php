@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class TemplateSurat extends CI_Controller
+class Templatesurat extends CI_Controller
 {
 
     protected $path_view;
@@ -125,7 +125,6 @@ class TemplateSurat extends CI_Controller
         $result = $this->db->update('metadata_surat', ['fields' => $new_json_data]);
 
         redirect(base_url('panel-admin/templatesurat/' . $id), 'refresh');
-        
     }
 
     public function format($id)

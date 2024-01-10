@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class JenisSurat extends CI_Controller
+class Jenissurat extends CI_Controller
 {
 
     protected $path_view;
@@ -41,14 +41,13 @@ class JenisSurat extends CI_Controller
     {
         $dataPost = $this->input->post();
         unset($dataPost['files']);
-        $update = $this->jsurat->update($id,$dataPost);
+        $update = $this->jsurat->update($id, $dataPost);
 
         if ($update) {
             redirect(base_url('panel-admin/jenissurat'), 'refresh');
         } else {
             redirect(base_url('panel-admin/jenissurat'), 'refresh');
         }
-           
     }
 
     public function delete($id)

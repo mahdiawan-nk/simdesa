@@ -1,7 +1,8 @@
-<?php 
-defined('BASEPATH') OR exit('No direct script access allowed');
+<?php
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class TemplateSurat extends CI_Controller {
+class Templatesurat extends CI_Controller
+{
 
     public function __construct()
     {
@@ -11,7 +12,6 @@ class TemplateSurat extends CI_Controller {
     public function index()
     {
         $this->load->view('components/template');
-        
     }
 }
 

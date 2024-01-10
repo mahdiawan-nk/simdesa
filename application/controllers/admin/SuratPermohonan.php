@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class SuratPermohonan extends CI_Controller
+class Suratpermohonan extends CI_Controller
 {
 
     protected $path_view;
