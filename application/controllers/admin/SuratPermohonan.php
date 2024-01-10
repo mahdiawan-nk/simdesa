@@ -51,7 +51,7 @@ class SuratPermohonan extends CI_Controller
         if (array_intersect($this->level, $allowedLevels)) {
             $DataPost['tanggal_signatur'] = date('Y-m-d');
             $DataPost['signatur_kode'] = $this->generateRandomNumber(16);
-            $DataPost['no_surat'] = $this->get_next_number($GetJenisSurat);
+            $DataPost['no_surat'] = $this->get_next_number($GetJenisSurat, $id);
         }
         $this->db->where('id_pengajuan', $id);
         $this->db->update('pengajuan_surat', $DataPost);
@@ -65,12 +65,12 @@ class SuratPermohonan extends CI_Controller
         return mt_rand($min, $max);
     }
 
-    private function get_next_number($jenis_surat)
+    private function get_next_number($jenis_surat, $id)
     {
         $getFormatedPenomoran = $this->db->get_where('surat_jenis', ['id_surat_jenis' => $jenis_surat])->row()->format_penomoran;
 
         // Mendapatkan nomor terakhir untuk jenis surat tertentu dari database
-        $last_number = $this->get_last_number_from_database($jenis_surat);
+        $last_number = $this->get_last_number_from_database($jenis_surat, $id);
 
         // Mengonversi nomor terakhir ke nomor berikutnya dengan format tiga digit (001, 002, dst.)
         $next_number = $last_number + 1;
@@ -81,7 +81,7 @@ class SuratPermohonan extends CI_Controller
         return $nomor_surat;
     }
 
-    private function get_last_number_from_database($jenis_surat)
+    private function get_last_number_from_database($jenis_surat, $idp = null)
     {
         // Contoh pengambilan nomor terakhir dari database
         // Anda harus mengganti bagian ini sesuai dengan cara Anda menyimpan nomor terakhir dari jenis surat tertentu
@@ -89,6 +89,8 @@ class SuratPermohonan extends CI_Controller
         $this->db->select('no_surat');
         $this->db->from('pengajuan_surat');
         $this->db->where('id_surat', $jenis_surat);
+        $this->db->where('id_pengajuan !=', $idp);
+
         $this->db->order_by('id_pengajuan', 'DESC');
         $query = $this->db->get();
 

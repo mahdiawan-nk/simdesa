@@ -34,7 +34,7 @@ class Userauth extends CI_Controller
             if ($checkPwduser) {
 
                 $array = array(
-                    'username'=>$checkNikuser->nama,
+                    'username' => $checkNikuser->nama,
                     'uuid' => $checkNikuser->id_penduduk,
                     'level' => ['warga'],
                     'login' => TRUE
@@ -54,7 +54,7 @@ class Userauth extends CI_Controller
     public function Logout()
     {
         $array = array(
-            'username'=>null,
+            'username' => null,
             'level' => '',
             'uuid' => '',
             'login' => FALSE

@@ -6,7 +6,7 @@ class SuratUser extends CI_Controller
 
     protected $path_view;
     protected $data = [];
-
+    protected $uuid;
     public function __construct()
     {
         parent::__construct();
@@ -16,12 +16,14 @@ class SuratUser extends CI_Controller
             'create' => 'user/pengajuan/add',
             'edit' => 'user/pengajuan/edit'
         ];
+        $this->uuid = $this->session->userdata('uuid');
     }
 
     public function index()
     {
         $this->db->select('a.*,b.nama_surat');
         $this->db->join('surat_jenis b', 'a.id_surat=b.id_surat_jenis', 'inner');
+        $this->db->where('id_penduduk', $this->uuid);
         $dataSurat = $this->db->get('pengajuan_surat a')->result();
         $this->data['surat'] = $this->jsurat->read()->result();
         $this->data['data'] = $dataSurat;
@@ -59,7 +61,7 @@ class SuratUser extends CI_Controller
         ];
 
         $insert = $this->db->insert('pengajuan_surat', $dataPost);
-        $latId =$this->db->insert_id();
+        $latId = $this->db->insert_id();
 
         $config['upload_path'] = './uploads/';
         $config['allowed_types'] = 'gif|jpg|png|pdf|jpeg';
@@ -81,24 +83,24 @@ class SuratUser extends CI_Controller
                 if ($this->upload->do_upload('file')) {
                     // Berhasil diunggah
                     $uploadData = $this->upload->data();
-                    $dataFile[]=[
-                        'id_pengajuan'=>$latId,
-                        'id_syarat_surat'=>$syarat[$key]['id_syarat_surat'],
-                        'file'=>$uploadData['file_name']
+                    $dataFile[] = [
+                        'id_pengajuan' => $latId,
+                        'id_syarat_surat' => $syarat[$key]['id_syarat_surat'],
+                        'file' => $uploadData['file_name']
                     ];
                 }
-            }else{
-                $dataFile[]=[
-                    'id_pengajuan'=>$latId,
-                    'id_syarat_surat'=>$syarat[$key]['id_syarat_surat'],
-                    'file'=>NULL
+            } else {
+                $dataFile[] = [
+                    'id_pengajuan' => $latId,
+                    'id_syarat_surat' => $syarat[$key]['id_syarat_surat'],
+                    'file' => NULL
                 ];
             }
         }
 
         $this->db->insert_batch('pengajuan_surat_file', $dataFile);
-        
-        
+
+
         if ($insert) {
             redirect(base_url('panel-user/surat'));
         } else {
