@@ -20,6 +20,7 @@ class Authadmin extends CI_Controller
     {
         $isLoggedIn = $this->session->userdata('login') ?? false;
         $userLevel = $this->session->userdata('level') ?? [];
+        $test = 'a';
 
         $allowedLevels = [1, 2, 3];
 
