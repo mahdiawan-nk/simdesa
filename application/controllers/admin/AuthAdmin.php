@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class AuthAdmin extends CI_Controller
+class Authadmin extends CI_Controller
 {
     protected $post;
     protected $get;
@@ -40,7 +40,7 @@ class AuthAdmin extends CI_Controller
             $isPassword = $this->admins->checkPassword($this->post['password']);
             if ($isPassword) {
                 $array = array(
-                    'username'=>$isEmailExist->username,
+                    'username' => $isEmailExist->username,
                     'uuid' => $isEmailExist->id_admin,
                     'level' => [$isEmailExist->role],
                     'login' => TRUE
@@ -60,7 +60,7 @@ class AuthAdmin extends CI_Controller
     public function Logout()
     {
         $array = array(
-            'username'=>null,
+            'username' => null,
             'level' => null,
             'uuid' => null,
             'login' => FALSE
